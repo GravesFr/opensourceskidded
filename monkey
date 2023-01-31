@@ -163,20 +163,6 @@ RunService:BindToRenderStep("AimLock", 0, function()
     end
 end)
 
-getgenv().XDDDD = false
-local mouseyea = game.Players.LocalPlayer:GetMouse()
-    mouseyea.KeyDown:Connect(
-        function(ToggleKey)
-            if getgenv().XDDDD == false and ToggleKey == getgenv().Feds.FovChangerKey then
-                    getgenv().Feds.FovSize = getgenv().Feds.FovChangerSmallSize
-                    getgenv().XDDDD = true
-                else
-                   getgenv().Feds.FovSize = getgenv().Feds.FovChangerBigSize
-                   getgenv().XDDDD = false
-                end
-        end
-    )   
-
 while getgenv().Feds.AutoPrediction == true do
     local ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
     local pingValue = string.split(ping, " ")[1]
@@ -204,5 +190,4 @@ while getgenv().Feds.AutoPrediction == true do
  
     wait(0.5)
 end
-
 
