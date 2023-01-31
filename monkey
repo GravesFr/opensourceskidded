@@ -75,7 +75,7 @@ local Script = {Functions = {}}
 
 
 Script.Functions.getToolName = function(name)
-
+-- MAD3 BY F3DS S0NNY
     local split = string.split(string.split(name, "[")[2], "]")[1]
 
     return split
@@ -91,7 +91,7 @@ Script.Functions.getEquippedWeaponName = function(player)
       local Tool =  player.Character:FindFirstChildWhichIsA("Tool")
 
       if string.find(Tool.Name, "%[") and string.find(Tool.Name, "%]") and not string.find(Tool.Name, "Wallet") and not string.find(Tool.Name, "Phone") then 
-
+-- M4D3 BY F33DS S0NN7
          return Script.Functions.getToolName(Tool.Name)
 
       end
