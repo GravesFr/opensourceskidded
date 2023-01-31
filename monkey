@@ -21,37 +21,7 @@ local CurrentCamera = Workspace.CurrentCamera
 
 
 ---------------------------------------------------------------
-getgenv().Feds = {
-    
-    SilentAim = true,
 
-    AimLock = false,
-
-    Prediction = 0.1,
-    
-    Aimparts = {"Head", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "HumanoidRootPart", "LeftUpperLeg", "RightLowerLeg", "RightFoot", "LowerTorso"},
-    
-    FovSize = 8.8,
-    
-    HitChance = 100,
-
-    AimLockKeybind = Enum.KeyCode.E,
-
-    Resolver = true,
-    
-    AutoPrediction = true,
-    
-    AutoP20 = 0.113, 
-    AutoP30 = 0.155,
-    AutoP40 = 0.1215,
-    AutoP50 = 0.1235,
-    AutoP60 = 0.1253,
-    AutoP70 = 0.1269,
-    AutoP80 = 0.1285,
-    AutoP90 = 0.1315,
-    AutoP100 = 0.1345
-    
-}
 Aiming.FOV = getgenv().Feds.FovSize
 Aiming.TargetPart = getgenv().Feds.Aimparts
 Aiming.HitChance = getgenv().Feds.HitChance
