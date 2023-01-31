@@ -191,19 +191,4 @@ while getgenv().Feds.AutoPrediction == true do
     wait(0.5)
 end
 
-local mouseyea = game.Players.LocalPlayer:GetMouse()
-    mouseyea.KeyDown:Connect(
-        function(ToggleKey)
-            if ToggleKey == getgenv().Feds.FovChangerKey then
-                if Aiming.FOV > getgenv().Feds.FovChangerSmall then
-                    Aiming.FOV = getgenv().Feds.FovChangerSmall
-                    small:Play()
-                    
-                else
-                    Aiming.FOV = getgenv().Feds.FovChangerBig
-                    big:Play()
-                    
-                end
-            end
-        end
-    )   
+
