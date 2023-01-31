@@ -105,7 +105,7 @@ game:GetService("RunService").Heartbeat:Connect(
                                         if
                                             (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
                                                 game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
-                                                25
+                                                30
                                          then
                                             Aiming.FOV = getgenv().Feds.CloseRangeFov
                                         elseif
@@ -132,7 +132,7 @@ game:GetService("RunService").Heartbeat:Connect(
                                         if
                                             (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
                                                 game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
-                                                25
+                                                30
                                          then
                                             getgenv().Feds.Prediction = getgenv().Feds.CloseRangePrediction
                                         elseif
