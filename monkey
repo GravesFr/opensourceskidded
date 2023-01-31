@@ -195,11 +195,11 @@ getgenv().XDDDD = false
 local mouseyea = game.Players.LocalPlayer:GetMouse()
     mouseyea.KeyDown:Connect(
         function(ToggleKey)
-            if getgenv().Feds.FovChanger == true and getgenv().XDDDD == false and ToggleKey == getgenv().Feds.FovChangerKey then
-                    Aiming.FOV = getgenv().FovChangerSize
+            if getgenv().XDDDD == false and ToggleKey == getgenv().Feds.FovChangerKey then
+                    getgenv().Feds.FovSize = getgenv().FovChangerSmallSize
                     getgenv().XDDDD = true
                 else
-                   Aiming.FOV = getgenv().Feds.FovSize
+                   getgenv().Feds.FovSize = getgenv().Feds.FovChangerBigSize
                    getgenv().XDDDD = false
                 end
         end
