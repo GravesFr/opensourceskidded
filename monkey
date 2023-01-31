@@ -19,10 +19,40 @@ local Mouse = LocalPlayer:GetMouse()
 
 local CurrentCamera = Workspace.CurrentCamera
 
+getgenv().Feds = {
+    
+    -- // Main silent stuff (sorry for not organizing better im lazy)
+    Prediction = 0.125,
+    AimParts = {"Head", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "HumanoidRootPart", "LeftUpperLeg", "RightLowerLeg", "RightFoot", "LowerTorso"},
+    FovSize = 10,
+    Resolver = true,
+    Keybind = 'P',
+    
+    -- // fov ranges
+    FovRange = true,
+    CloseRangeFov = 20,
+    MidRangeFov = 10,
+    LongRangeFov = 5,
+    -- // prediction ranges 
+    PredictionRange = true,
+    CloseRangePrediction = 0.131, -- bad sets
+    MidRangePrediction = 0.1281, -- bad sets
+    FarRangePrediction = 0.1261, -- bad sets
+    
+    -- // Auto prediction
+    AutoPrediction = true,
+    AutoP20 = 0.113, -- 20 ping auto prediction
+    AutoP30 = 0.1173, -- 30 ping auto prediction
+    AutoP40 = 0.1215, -- 40 ping auto prediction
+    AutoP50 = 0.1235,-- 50 ping auto prediction
+    AutoP60 = 0.1253, -- 60 ping auto prediction
+    AutoP70 = 0.1269, -- 70 ping auto prediction
+    AutoP80 = 0.1285, -- 80 ping auto prediction
+    AutoP90 = 0.1315, -- 90 ping auto prediction
+    AutoP100 = 0.134 -- 100 ping auto prediction
+}
 
-Aiming.FOV = getgenv().Feds.FovSize
-Aiming.TargetPart = getgenv().Feds.Aimparts
-Aiming.HitChance = getgenv().Feds.HitChance
+Aiming.FOV = 15
 --------------------------------------------------
 --------------------------------------------------- -fov 5.5-6.6 is legit
 
@@ -67,6 +97,61 @@ task.spawn(function()
     end
 
 end)
+
+game:GetService("RunService").Heartbeat:Connect(
+                                function()
+                                    if
+                                        getgenv().Feds.FovRange == true and Aiming.Selected ~= nil and (Aiming.Selected.Character)  then
+                                        if
+                                            (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+                                                25
+                                         then
+                                            Aiming.FOV = getgenv().Feds.CloseRangeFov
+                                        elseif
+                                            (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+                                                90
+                                         then
+                                            Aiming.FOV = getgenv().Feds.MidRangeFov
+                                        elseif
+                                            (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+                                                math.huge
+                                         then
+                                            Aiming.FOV = getgenv().Feds.LongRangeFov
+                                        end
+                                    end
+                                end
+                            )
+                            
+                            game:GetService("RunService").Heartbeat:Connect(
+                                function()
+                                    if
+                                        getgenv().Feds.PredictionRange == true and Aiming.Selected ~= nil and (Aiming.Selected.Character)  then
+                                        if
+                                            (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+                                                25
+                                         then
+                                            getgenv().Feds.Prediction = getgenv().Feds.CloseRangePrediction
+                                        elseif
+                                            (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+                                                90
+                                         then
+                                            getgenv().Feds.Prediction = getgenv().Feds.MidRangePrediction
+                                        elseif
+                                            (game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+                                                math.huge
+                                         then
+                                            getgenv().Feds.Prediction = getgenv().Feds.LongRangePrediction
+                                        end
+                                    end
+                                end
+                            )
+                        
 
 
 
@@ -190,5 +275,13 @@ while getgenv().Feds.AutoPrediction == true do
  
     wait(0.5)
 end
-
+mouse.KeyDown:Connect(function(key)
+    if key == getgenv().Feds.Keybind then
+    if Aiming.Enabled == false then
+    Aiming.Enabled = true
+    else
+    Aiming.Enabled = false
+end
+end
+end)
 
