@@ -20,13 +20,10 @@ local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
 
----------------------------------------------------------------
-
 Aiming.FOV = getgenv().Feds.FovSize
 Aiming.TargetPart = getgenv().Feds.Aimparts
 Aiming.HitChance = getgenv().Feds.HitChance
 --------------------------------------------------
-
 --------------------------------------------------- -fov 5.5-6.6 is legit
 
 function Aiming.Check()
@@ -166,31 +163,45 @@ RunService:BindToRenderStep("AimLock", 0, function()
     end
 end)
 
-getgenv().auto_prediction = getgenv().Feds.AutoPrediction
-while getgenv().auto_prediction == true do
+while getgenv().Feds.AutoPrediction == true do
     local ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
     local pingValue = string.split(ping, " ")[1]
     local pingNumber = tonumber(pingValue)
    
-    if pingNumber < 30 then 
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP20
-    elseif pingNumber < 40 then 
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP30
+    if pingNumber < 30 then
+        Feds.Prediction = (getgenv().Feds.AutoP20)
+    elseif pingNumber < 40 then
+        Feds.Prediction = (getgenv().Feds.AutoP30)
     elseif pingNumber < 50 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP40
+        Feds.Prediction = (getgenv().Feds.AutoP40)
     elseif pingNumber < 60 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP50
+        Feds.Prediction = (getgenv().Feds.AutoP50)
     elseif pingNumber < 70 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP60
+        Feds.Prediction = (getgenv().Feds.AutoP60)
     elseif pingNumber < 80 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP70
+        Feds.Prediction = (getgenv().Feds.AutoP70)
     elseif pingNumber < 90 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP80
+        Feds.Prediction = (getgenv().Feds.AutoP80)
     elseif pingNumber < 100 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP90
+        Feds.Prediction = (getgenv().Feds.AutoP90)
     elseif pingNumber < 110 then
-        getgenv().Feds.Prediction = getgenv().Feds.AutoP100
+        Feds.Prediction = (getgenv().Feds.AutoP100)
     end
  
-    wait(2.5)
+    wait(0.5)
 end
+
+getgenv().touchedlol = false
+local mouseyea = game.Players.LocalPlayer:GetMouse()
+    mouseyea.KeyDown:Connect(
+        function(ToggleKey)
+            if getgenv().Feds.FovChanger == true and getgenv().touchedlol == false and ToggleKey == getgenv().Feds.FovChangeKey then
+                    Aiming.FOV = getgenv().Feds.FovChangerSize
+                    getgenv().touchedlol = true
+                else
+                    getgenv().Feds.FovSize = getgenv().Feds.FovSize
+                    getgenv().touchedlol = false
+                end
+        end
+    )  
+Aiming.ShowFOV = true
